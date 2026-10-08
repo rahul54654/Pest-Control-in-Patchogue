@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VerdantGuard Environmental Solutions | Professional Pest Control</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            500: '#10b981',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#0f382c',
+                            950: '#052e16',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { opacity: '0.4' },
+                            '50%': { opacity: '0.8' },
+                        }
+                    },
+                    animation: {
+                        float: 'float 4s ease-in-out infinite',
+                        pulseGlow: 'pulseGlow 3s ease-in-out infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(220, 252, 231, 0.6);
+        }
+        .page-tab {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+        }
+        .page-tab.active {
+            display: block;
+            opacity: 1;
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(15, 56, 44, 0.92) 0%, rgba(22, 101, 52, 0.85) 100%), 
+                        url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #10b981;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col justify-between custom-scrollbar">
+
+    <!-- HEADER & NAVIGATION -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-emerald-100 shadow-sm transition-all duration-300">
+        <!-- Top Bar Notice -->
+        <div class="bg-brand-900 text-brand-100 text-xs py-1.5 px-4">
+            <div class="max-w-7xl mx-auto flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-phone text-brand-500"></i> Emergency 24/7 Hotline: (631) 555-0199</span>
+                    <span class="hidden md:inline-flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-brand-500"></i> Licensed, Bonded & Eco-Certified</span>
+                </div>
+                <div class="flex items-center space-x-3 text-xs">
+                    <span class="inline-flex items-center gap-1 text-emerald-400 font-medium">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> Dispatching On-Call Technicians
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Nav -->
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand SVG Logo -->
+            <a href="#" onclick="switchTab('home')" class="flex items-center space-x-3 group">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-brand-900 to-brand-600 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-300">
+                    <svg class="w-7 h-7 text-emerald-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <path d="M12 8v8"/>
+                        <path d="M8 12h8"/>
+                        <circle cx="12" cy="12" r="3" class="fill-emerald-400/30"/>
+                    </svg>
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold tracking-tight text-brand-900 block leading-tight">Verdant<span class="text-brand-500">Guard</span></span>
+                    <span class="text-[10px] uppercase tracking-widest font-bold text-emerald-600 block">Environmental Solutions</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <div class="hidden md:flex items-center space-x-1 lg:space-x-2">
+                <button onclick="switchTab('home')" id="nav-home" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 text-brand-700 bg-brand-50">Home</button>
+                <button onclick="switchTab('services')" id="nav-services" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 text-slate-600 hover:text-brand-700 hover:bg-brand-50">Services</button>
+                <button onclick="switchTab('blog')" id="nav-blog" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 text-slate-600 hover:text-brand-700 hover:bg-brand-50">Eco Insights (Blog)</button>
+                <button onclick="switchTab('about')" id="nav-about" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 text-slate-600 hover:text-brand-700 hover:bg-brand-50">About Us</button>
+                <button onclick="switchTab('contact')" id="nav-contact" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 text-slate-600 hover:text-brand-700 hover:bg-brand-50">Contact Us</button>
+            </div>
+
+            <!-- CTA Header Button -->
+            <div class="hidden md:block">
+                <button onclick="switchTab('contact')" class="bg-gradient-to-r from-brand-600 to-brand-800 text-white px-5 py-2.5 rounded-xl font-bold text-sm shadow-md shadow-emerald-900/10 hover:shadow-lg hover:from-brand-700 hover:to-brand-900 transition-all duration-300 transform hover:-translate-y-0.5">
+                    <i class="fa-solid fa-calendar-check mr-2"></i>Request Inspection
+                </button>
+            </div>
+
+            <!-- Mobile Hamburger Button -->
+            <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg text-slate-700 hover:text-brand-700 hover:bg-brand-50 focus:outline-none">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </nav>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-brand-100 px-4 pt-2 pb-6 space-y-2 shadow-lg">
+            <button onclick="switchTab('home'); toggleMobileMenu()" class="w-full text-left px-4 py-2.5 rounded-lg font-semibold text-slate-700 hover:bg-brand-50 hover:text-brand-800">Home</button>
+            <button onclick="switchTab('services'); toggleMobileMenu()" class="w-full text-left px-4 py-2.5 rounded-lg font-semibold text-slate-700 hover:bg-brand-50 hover:text-brand-800">Services</button>
+            <button onclick="switchTab('blog'); toggleMobileMenu()" class="w-full text-left px-4 py-2.5 rounded-lg font-semibold text-slate-700 hover:bg-brand-50 hover:text-brand-800">Eco Insights (Blog)</button>
+            <button onclick="switchTab('about'); toggleMobileMenu()" class="w-full text-left px-4 py-2.5 rounded-lg font-semibold text-slate-700 hover:bg-brand-50 hover:text-brand-800">About Us</button>
+            <button onclick="switchTab('contact'); toggleMobileMenu()" class="w-full text-left px-4 py-2.5 rounded-lg font-semibold text-slate-700 hover:bg-brand-50 hover:text-brand-800">Contact Us</button>
+            <div class="pt-2">
+                <button onclick="switchTab('contact'); toggleMobileMenu()" class="w-full bg-brand-700 text-white py-3 rounded-xl font-bold text-center">
+                    Request Emergency Inspection
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINERS (5 PAGES) -->
+    <main class="flex-grow">
+
+        <!-- ==================== 1. HOME PAGE ==================== -->
+        <section id="page-home" class="page-tab active">
+            <!-- Hero Section -->
+            <div class="relative hero-bg text-white py-24 md:py-32 px-4 overflow-hidden">
+                <div class="absolute inset-0 bg-radial-gradient from-emerald-500/10 to-transparent pointer-events-none"></div>
+                <div class="max-w-7xl mx-auto relative z-10 grid md:grid-cols-12 gap-12 items-center">
+                    <div class="md:col-span-7 space-y-6">
+                        <div class="inline-flex items-center gap-2 bg-emerald-500/20 backdrop-blur-md border border-emerald-400/30 text-emerald-300 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider">
+                            <i class="fa-solid fa-leaf text-emerald-400"></i> 100% Non-Toxic & Botanical Formulations
+                        </div>
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight">
+                            Advanced Eco-Shield Pest Elimination
+                        </h1>
+                        <p class="text-slate-200 text-lg md:text-xl font-light max-w-2xl leading-relaxed">
+                            Protecting families, commercial spaces, and local ecosystems with targeted biological pest protocols and zero-chemical residual guarantees.
+                        </p>
+                        <div class="flex flex-wrap gap-4 pt-4">
+                            <button onclick="switchTab('contact')" class="bg-brand-500 hover:bg-brand-600 text-brand-950 font-extrabold px-8 py-4 rounded-xl shadow-lg shadow-emerald-500/20 transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-2">
+                                <span>Get Free Site Inspection</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                            <button onclick="switchTab('services')" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-xl border border-white/20 backdrop-blur-md transition-all duration-300">
+                                Explore Eco Services
+                            </button>
+                        </div>
+                        <!-- Badges -->
+                        <div class="pt-8 border-t border-white/10 grid grid-cols-3 gap-4 text-center sm:text-left">
+                            <div>
+                                <div class="text-2xl font-black text-emerald-400">100%</div>
+                                <div class="text-xs text-slate-300 font-medium">Pet & Child Safe</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-black text-emerald-400">24/7</div>
+                                <div class="text-xs text-slate-300 font-medium">Emergency Response</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-black text-emerald-400">15+ Yrs</div>
+                                <div class="text-xs text-slate-300 font-medium">NY State Certified</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Image Showcase Card with Professional Text Overlay -->
+                    <div class="md:col-span-5 relative">
+                        <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20 group">
+                            <img src="https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?auto=format&fit=crop&w=800&q=80" alt="Professional Technician" class="w-full h-[420px] object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-brand-950/90 via-brand-950/30 to-transparent"></div>
+                            <!-- Image Overlay Text -->
+                            <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                                <span class="bg-emerald-500 text-brand-950 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider mb-2 inline-block">Licensed & Insured Technicians</span>
+                                <h3 class="text-xl font-bold">Targeted Bio-Barrier Tech</h3>
+                                <p class="text-xs text-slate-200 mt-1">Precision perimeter protection formulated for long-island suburban homes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Services Grid -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-emerald-600 font-extrabold text-xs uppercase tracking-widest bg-emerald-100 px-3 py-1 rounded-full">Comprehensive Solutions</span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-brand-900 mt-3">Targeted Protection Programs</h2>
+                    <p class="text-slate-600 mt-3">Combining microscopic diagnostic inspection with botanical eco-active compounds.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Service Card 1 -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-xl hover:border-emerald-200 transition-all duration-300 group">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=600&q=80" alt="Residential Service" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                            <span class="absolute bottom-3 left-4 text-white font-bold text-sm bg-brand-900/80 backdrop-blur-sm px-3 py-1 rounded-lg">Eco Home Protection</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-900 mb-2">Residential Pest Defense</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-4">Complete seasonal defense guarding interiors and outdoor living spaces from invasive crawling insects and arachnids.</p>
+                            <button onclick="switchTab('services')" class="text-emerald-600 font-bold text-sm inline-flex items-center gap-1 hover:gap-2 transition-all">Learn More <i class="fa-solid fa-arrow-right text-xs"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 2 -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-xl hover:border-emerald-200 transition-all duration-300 group">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=600&q=80" alt="Commercial Pest Control" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                            <span class="absolute bottom-3 left-4 text-white font-bold text-sm bg-brand-900/80 backdrop-blur-sm px-3 py-1 rounded-lg">Commercial & Retail</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-900 mb-2">Commercial Pest Shield</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-4">Discreet, regulatory-compliant eco-auditing and ongoing protection for restaurants, warehouses, and offices.</p>
+                            <button onclick="switchTab('services')" class="text-emerald-600 font-bold text-sm inline-flex items-center gap-1 hover:gap-2 transition-all">Learn More <i class="fa-solid fa-arrow-right text-xs"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 3 -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-xl hover:border-emerald-200 transition-all duration-300 group">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80" alt="Termite Treatment" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                            <span class="absolute bottom-3 left-4 text-white font-bold text-sm bg-brand-900/80 backdrop-blur-sm px-3 py-1 rounded-lg">Termite & Structural</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-900 mb-2">Termite Structural Shield</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-4">Non-invasive termiticide monitoring barriers that halt wood-destroying organism colonies permanently.</p>
+                            <button onclick="switchTab('services')" class="text-emerald-600 font-bold text-sm inline-flex items-center gap-1 hover:gap-2 transition-all">Learn More <i class="fa-solid fa-arrow-right text-xs"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trust / Why Choose Us Banner -->
+            <div class="bg-brand-900 text-white py-16 px-4 relative overflow-hidden">
+                <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <span class="text-emerald-400 font-bold text-xs uppercase tracking-widest">Why VerdantGuard?</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold mt-2 mb-6">Pioneering Eco-Botanical Extermination Technology</h2>
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 font-bold">1</div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Zero Toxic Residuals</h4>
+                                    <p class="text-slate-300 text-sm">Safe for children, senior citizens, and household pets immediately after application.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 font-bold">2</div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Micro-Encapsulated Formulas</h4>
+                                    <p class="text-slate-300 text-sm">Time-released natural active ingredients withstand rain and harsh seasonal cycles.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 font-bold">3</div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Guaranteed Re-Service Warranty</h4>
+                                    <p class="text-slate-300 text-sm">If pests return between scheduled quarterly visits, our technicians re-treat free of charge.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Image Card with Text Overlay -->
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-emerald-500/30">
+                        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80" alt="Safe Clean Protocol" class="w-full h-80 object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-950 via-brand-950/20 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6">
+                            <span class="text-emerald-400 text-xs font-extrabold uppercase">Eco-Certified Quality</span>
+                            <h3 class="text-white text-xl font-bold">24/7 Rapid Emergency Response</h3>
+                            <p class="text-slate-300 text-xs mt-1">Dedicated mobile teams stationed locally across Suffolk County for instant response.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 2. SERVICE PAGE ==================== -->
+        <section id="page-services" class="page-tab">
+            <!-- Header Banner -->
+            <div class="bg-gradient-to-r from-brand-900 to-brand-800 text-white py-16 px-4">
+                <div class="max-w-7xl mx-auto text-center">
+                    <span class="bg-emerald-500/20 text-emerald-300 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">Our Specialties</span>
+                    <h1 class="text-3xl md:text-5xl font-extrabold mt-3">Targeted Eco Pest Services</h1>
+                    <p class="text-slate-200 mt-2 max-w-2xl mx-auto">Scientifically validated, environmentally responsible extermination and structural protection.</p>
+                </div>
+            </div>
+
+            <!-- Service Items List -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12">
+                <!-- Service Item 1 -->
+                <div class="bg-white rounded-3xl p-6 md:p-8 shadow-md border border-slate-100 grid md:grid-cols-12 gap-8 items-center">
+                    <div class="md:col-span-5 relative rounded-2xl overflow-hidden shadow-lg h-64">
+                        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80" alt="Residential Service" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-950/80 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <span class="text-xs bg-emerald-500 text-brand-950 font-extrabold px-2 py-0.5 rounded">Residential Spec</span>
+                            <p class="text-sm font-bold mt-1">Indoor & Outdoor Perimeter Barrier</p>
+                        </div>
+                    </div>
+                    <div class="md:col-span-7 space-y-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-brand-50 text-emerald-600 flex items-center justify-center text-lg font-bold"><i class="fa-solid fa-house-shield"></i></div>
+                            <h2 class="text-2xl font-bold text-brand-900">Residential Eco-Pest Defense</h2>
+                        </div>
+                        <p class="text-slate-600 leading-relaxed">Our residential program targets common household pests including ants, roaches, spiders, earwigs, and centipedes. Using plant-based essential oil concentrates and insect growth regulators (IGRs), we eradicate active nests without exposing your family to synthetic toxins.</p>
+                        <div class="flex flex-wrap gap-2 text-xs font-semibold text-brand-800">
+                            <span class="bg-brand-50 px-3 py-1 rounded-lg border border-brand-100"><i class="fa-solid fa-check text-emerald-500 mr-1"></i> Ants & Roaches</span>
+                            <span class="bg-brand-50 px-3 py-1 rounded-lg border border-brand-100"><i class="fa-solid fa-check text-emerald-500 mr-1"></i> Spiders & Centipedes</span>
+                            <span class="bg-brand-50 px-3 py-1 rounded-lg border border-brand-100"><i class="fa-solid fa-check text-emerald-500 mr-1"></i> Quarterly Maintenance</span>
+                        </div>
+                        <button onclick="switchTab('contact')" class="bg-brand-700 hover:bg-brand-800 text-white font-bold px-6 py-2.5 rounded-xl text-sm transition-all">Schedule Inspection</button>
+                    </div>
+                </div>
+
+                <!-- Service Item 2 -->
+                <div class="bg-white rounded-3xl p-6 md:p-8 shadow-md border border-slate-100 grid md:grid-cols-12 gap-8 items-center">
+                    <div class="md:col-span-7 space-y-4 order-2 md:order-1">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-brand-50 text-emerald-600 flex items-center justify-center text-lg font-bold"><i class="fa-solid fa-bug-slash"></i></div>
+                            <h2 class="text-2xl font-bold text-brand-900">Termite Diagnostic & Baiting Systems</h2>
+                        </div>
+                        <p class="text-slate-600 leading-relaxed">Subterranean termites present a significant threat to timber structures in coastal environments. VerdantGuard utilizes subterranean baiting stations that destroy whole subterranean colonies quietly and effectively without chemical soil trenching.</p>
+                        <div class="flex flex-wrap gap-2 text-xs font-semibold text-brand-800">
+                            <span class="bg-brand-50 px-3 py-1 rounded-lg border border-brand-100"><i class="fa-solid fa-check text-emerald-500 mr-1"></i> Eco-Bait Monitoring</span>
+                            <span class="bg-brand-50 px-3 py-1 rounded-lg border border-brand-100"><i class="fa-solid fa-check text-emerald-500 mr-1"></i> Non-Disruptive Installation</span>
+                            <span class="bg-brand-50 px-3 py-1 rounded-lg border border-brand-100"><i class="fa-solid fa-check text-emerald-500 mr-1"></i> Real-Estate Closing Certificates</span>
+                        </div>
+                        <button onclick="switchTab('contact')" class="bg-brand-700 hover:bg-brand-800 text-white font-bold px-6 py-2.5 rounded-xl text-sm transition-all">Request Termite Audit</button>
+                    </div>
+                    <div class="md:col-span-5 relative rounded-2xl overflow-hidden shadow-lg h-64 order-1 md:order-2">
+                        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80" alt="Termite Service" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-950/80 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <span class="text-xs bg-emerald-500 text-brand-950 font-extrabold px-2 py-0.5 rounded">Structural Safety</span>
+                            <p class="text-sm font-bold mt-1">Subterranean Termite Barrier</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Item 3 -->
+                <div class="bg-white rounded-3xl p-6 md:p-8 shadow-md border border-slate-100 grid md:grid-cols-12 gap-8 items-center">
+                    <div class="md:col-span-5 relative rounded-2xl overflow-hidden shadow-lg h-64">
+                        <img src="https://images.unsplash.com/photo-1579389083078-4e7018379f7e?auto=format&fit=crop&w=800&q=80" alt="Rodent Control" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-950/80 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <span class="text-xs bg-emerald-500 text-brand-950 font-extrabold px-2 py-0.5 rounded">Rodent Exclusion</span>
+                            <p class="text-sm font-bold mt-1">Humane Rodent & Wildlife Mitigation</p>
+                        </div>
+                    </div>
+                    <div class="md:col-span-7 space-y-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-brand-50 text-emerald-600 flex items-center justify-center text-lg font-bold"><i class="fa-solid fa-shield-cat"></i></div>
+                            <h2 class="text-2xl font-bold text-brand-900">Rodent Exclusion & Wildlife Management</h2>
+                        </div>
+                        <p class="text-slate-600 leading-relaxed">Mice and rats carry severe pathogens and damage wiring. We specialize in comprehensive structural exclusion—sealing entryway gaps with steel mesh—and setting non-poisonous internal traps.</p>
+                        <div class="flex flex-wrap gap-2 text-xs font-semibold text-brand-800">
+                            <span class="bg-brand-50 px-3 py-1 rounded-lg border border-brand-100"><i class="fa-solid fa-check text-emerald-500 mr-1"></i> Entry Point Sealing</span>
+                            <span class="bg-brand-50 px-3 py-1 rounded-lg border border-brand-100"><i class="fa-solid fa-check text-emerald-500 mr-1"></i> Sanitary Clean-up</span>
+                            <span class="bg-brand-50 px-3 py-1 rounded-lg border border-brand-100"><i class="fa-solid fa-check text-emerald-500 mr-1"></i> Humane Trapping</span>
+                        </div>
+                        <button onclick="switchTab('contact')" class="bg-brand-700 hover:bg-brand-800 text-white font-bold px-6 py-2.5 rounded-xl text-sm transition-all">Get Exclusion Quote</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 3. BLOG PAGE ==================== -->
+        <section id="page-blog" class="page-tab">
+            <!-- Article Header Banner -->
+            <div class="bg-brand-900 text-white py-16 px-4">
+                <div class="max-w-4xl mx-auto text-center space-y-4">
+                    <div class="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-300 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider">
+                        <i class="fa-solid fa-book-open"></i> Comprehensive Pest Management Guide
+                    </div>
+                    <h1 class="text-3xl md:text-5xl font-black leading-tight text-white">
+                        The Comprehensive Guide to Sustainable, Eco-Friendly Integrated Pest Management in Coastal Long Island Communities
+                    </h1>
+                    <div class="flex justify-center items-center gap-6 text-xs text-slate-300 pt-2 border-t border-brand-800/80">
+                        <span><i class="fa-solid fa-user-pen text-emerald-400 mr-1"></i> Dr. Marcus Vance, Entomologist</span>
+                        <span><i class="fa-solid fa-calendar text-emerald-400 mr-1"></i> Updated October 2026</span>
+                        <span><i class="fa-solid fa-clock text-emerald-400 mr-1"></i> 8 Min Read</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Blog Container -->
+            <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-slate-700 leading-relaxed space-y-8">
+
+                <!-- Featured Image with Overlay -->
+                <div class="relative rounded-3xl overflow-hidden shadow-xl my-6 border border-slate-200">
+                    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1200&q=80" alt="Eco Pest Solutions" class="w-full h-[380px] object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-950/85 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 right-6 text-white">
+                        <span class="bg-emerald-500 text-brand-950 text-xs font-bold px-3 py-1 rounded">Environmental Protection Protocol</span>
+                        <h2 class="text-xl md:text-2xl font-bold mt-2 text-white">Sustainable Botanical Pest Barrier Strategies for Coastal Regions</h2>
+                    </div>
+                </div>
+
+                <!-- Introduction -->
+                <div class="space-y-4 text-base md:text-lg">
+                    <p class="font-medium text-slate-900 text-xl leading-relaxed">
+                        Maintaining a pest-free home environment while protecting delicate local watersheds and domestic animal safety requires an evolution beyond harsh synthetic chemicals. For decades, traditional extermination tactics relied on broad-spectrum synthetic neurotoxins that left persistent residues on baseboards, gardens, and indoor air channels.
+                    </p>
+                    <p>
+                        Modern eco-friendly pest control practices revolve around Integrated Pest Management (IPM). IPM is a holistic methodology that emphasizes deep diagnostic inspection, habitat modification, structural repair, and targeted botanical treatments. By understanding pest biology, coastal environmental patterns, and seasonal migration cycles, homeowners across coastal New York can enjoy a completely insect-free living space without compromising environmental safety.
+                    </p>
+                </div>
+
+                <!-- Section: Coastal Environmental Factors -->
+                <div class="space-y-4 pt-6 border-t border-slate-200">
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-brand-900 tracking-tight">Understanding Coastal Ecosystem Dynamics & Pest Surge Seasons</h2>
+                    <p>
+                        Coastal regions experience high relative humidity, sandy soils, and damp maritime microclimates. These conditions create ideal breeding zones for various insect populations, including carpenter ants, subterranean termites, mosquitoes, and deer ticks.
+                    </p>
+
+                    <h3 class="text-xl font-bold text-slate-900 mt-4">1. Spring Awakening: Carpenter Ants & Termite Swarms</h3>
+                    <p>
+                        As temperatures climb above 50°F in early spring, reproductive termite alates and carpenter ant queens awaken from winter dormancy. Excess groundwater and damp foundation timber attract subterranean termite colonies, which can compromise structural joists if left untreated. Utilizing non-toxic cellulose baiting perimeter rings allows pest control professionals to intercept subterranean colonies before structural damage occurs.
+                    </p>
+
+                    <h3 class="text-xl font-bold text-slate-900 mt-4">2. Summer Humidity: Mosquitoes, Ticks & Stinging Insects</h3>
+                    <p>
+                        Summer brings rising humidity and frequent coastal rainfall, leaving standing water pockets in yards and gutters. Asian tiger mosquitoes and blacklegged ticks proliferate in high grass and damp soil. Traditional chemical fogs contaminate beneficial pollinators like honeybees and butterflies. Modern botanical barrier sprays—formulated with cedarwood, peppermint, and rosemary oil—naturally disrupt tick and mosquito olfactory receptors while preserving beneficial insects.
+                    </p>
+
+                    <h3 class="text-xl font-bold text-slate-900 mt-4">3. Autumn Ingress: Rodents & Overwintering Insects</h3>
+                    <p>
+                        When temperatures cool in late autumn, field mice, Norway rats, stink bugs, and lady beetles search for warmth inside wall voids and attics. A single quarter-inch gap around a utility pipe serves as an open gateway for rodents. Sealing these entryways using copper mesh, silicone sealants, and door sweeps provides a permanent physical barrier.
+                    </p>
+                </div>
+
+                <!-- Section: Non-Toxic Methods & Core Keyword Anchor Link -->
+                <div class="space-y-4 pt-6 border-t border-slate-200">
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-brand-900 tracking-tight">Core Pillar Strategies of Botanical Non-Toxic Extermination</h2>
+                    <p>
+                        Transitioning from synthetic pesticides to eco-botanical compounds guarantees safety for indoor air quality and local wildlife. Botanical active compounds derive from botanical extracts that plants evolved to defend themselves against leaf-eating insects.
+                    </p>
+                    <p class="bg-brand-50 border-l-4 border-brand-500 p-6 rounded-r-2xl italic text-slate-800 my-4 shadow-sm">
+                        "Eco-friendly formulations leverage essential plant extracts like geraniol, thyme, and peppermint to disrupt pest octopaminergic neuro-receptors—a pathway present only in invertebrates. This makes botanical solutions completely harmless to mammals, birds, and aquatic life."
+                    </p>
+                    <p>
+                        When seeking specialized eco-friendly technicians for coastal homes, choosing a provider experienced in regional pest species is paramount. For residential and commercial property owners requiring tailored eco-friendly interventions, exploring expert services such as <a href="https://quickpestcontrolpro.com/pest-control-patchogue-ny" target="_blank" rel="noopener font-bold" class="text-emerald-700 underline underline-offset-4 decoration-emerald-500 hover:text-emerald-900 font-extrabold bg-emerald-100/80 px-2 py-0.5 rounded transition-all">Pest Control in Patchogue, NY</a> ensures that treatments are customized specifically for local environmental conditions and building styles.
+                    </p>
+                    <p>
+                        By combining localized expertise with non-toxic botanical applications, properties receive long-lasting perimeter protection without exposing pets or soil ecosystems to harmful synthetic chemicals.
+                    </p>
+                </div>
+
+                <!-- Section: DIY Maintenance Checklist -->
+                <div class="space-y-4 pt-6 border-t border-slate-200">
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-brand-900 tracking-tight">Actionable Home Maintenance Checklist for Year-Round Prevention</h2>
+                    <p>
+                        Professional pest control works best alongside active preventive home maintenance. Here is a checklist of preventative practices every homeowner should follow:
+                    </p>
+
+                    <div class="grid sm:grid-cols-2 gap-4 my-6">
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-start space-x-3">
+                            <i class="fa-solid fa-droplet-slash text-emerald-600 text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-slate-900">Eliminate Moisture Drops</h4>
+                                <p class="text-xs text-slate-600 mt-1">Fix leaking hose bibs, clean rain gutters, and ensure downspouts divert water at least 5 feet from foundation walls.</p>
+                            </div>
+                        </div>
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-start space-x-3">
+                            <i class="fa-solid fa-tree text-emerald-600 text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-slate-900">Trim Tree Branches & Vegetation</h4>
+                                <p class="text-xs text-slate-600 mt-1">Keep branches and shrubbery trimmed at least 18 inches away from rooflines and siding to prevent insect highways.</p>
+                            </div>
+                        </div>
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-start space-x-3">
+                            <i class="fa-solid fa-box-open text-emerald-600 text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-slate-900">Store Food in Airtight Containers</h4>
+                                <p class="text-xs text-slate-600 mt-1">Transfer grains, pet food, and sugars into sealed glass or heavy plastic containers to prevent pantry pests.</p>
+                            </div>
+                        </div>
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-start space-x-3">
+                            <i class="fa-solid fa-door-closed text-emerald-600 text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-slate-900">Install Weather Stripping</h4>
+                                <p class="text-xs text-slate-600 mt-1">Replace worn rubber weather seals along garage doors, basement entryways, and exterior doorways.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: FAQ Accordion -->
+                <div class="space-y-6 pt-6 border-t border-slate-200">
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-brand-900 tracking-tight">Frequently Asked Questions (FAQ)</h2>
+                    
+                    <div class="space-y-4">
+                        <!-- FAQ Item 1 -->
+                        <div class="border border-slate-200 rounded-2xl p-5 bg-white shadow-sm">
+                            <h3 class="font-bold text-lg text-brand-900 flex justify-between items-center cursor-pointer" onclick="toggleFaq('faq-1')">
+                                <span>Are eco-friendly pest treatments as effective as traditional chemical treatments?</span>
+                                <i class="fa-solid fa-chevron-down text-emerald-600 transition-transform duration-200" id="faq-1-icon"></i>
+                            </h3>
+                            <div id="faq-1" class="hidden mt-3 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-3">
+                                Yes. Modern botanical compounds utilize micro-encapsulation technology that binds essential oil extracts to microscopic lipid structures. This extends active residual lifespan to match or exceed traditional synthetic chemicals without introducing environmental toxicity.
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 2 -->
+                        <div class="border border-slate-200 rounded-2xl p-5 bg-white shadow-sm">
+                            <h3 class="font-bold text-lg text-brand-900 flex justify-between items-center cursor-pointer" onclick="toggleFaq('faq-2')">
+                                <span>How quickly can my family and pets return inside after treatment?</span>
+                                <i class="fa-solid fa-chevron-down text-emerald-600 transition-transform duration-200" id="faq-2-icon"></i>
+                            </h3>
+                            <div id="faq-2" class="hidden mt-3 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-3">
+                                Because our eco-friendly active ingredients are botanical and non-toxic, indoor areas can generally be re-occupied as soon as spray mist dries—typically 20 to 30 minutes after application.
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 3 -->
+                        <div class="border border-slate-200 rounded-2xl p-5 bg-white shadow-sm">
+                            <h3 class="font-bold text-lg text-brand-900 flex justify-between items-center cursor-pointer" onclick="toggleFaq('faq-3')">
+                                <span>How often should an eco-friendly perimeter shield be re-applied?</span>
+                                <i class="fa-solid fa-chevron-down text-emerald-600 transition-transform duration-200" id="faq-3-icon"></i>
+                            </h3>
+                            <div id="faq-3" class="hidden mt-3 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-3">
+                                We recommend a seasonal quarterly protection program (Spring, Summer, Autumn, and Winter). Regular quarterly applications keep active botanical barriers continuous along your foundation and yard perimeter year-round.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Conclusion -->
+                <div class="space-y-4 pt-6 border-t border-slate-200 bg-brand-50 p-8 rounded-3xl border border-brand-100">
+                    <h2 class="text-2xl font-extrabold text-brand-900">Conclusion: Embracing Sustainable Pest Protection</h2>
+                    <p class="text-slate-700">
+                        Protecting your home from invasive insect species does not mean sacrificing family safety or environmental health. By pairing structural exclusion tactics with micro-encapsulated botanical applications and routine diagnostic audits, homeowners achieve long-term peace of mind.
+                    </p>
+                    <div class="pt-2">
+                        <button onclick="switchTab('contact')" class="bg-brand-700 hover:bg-brand-800 text-white font-bold px-6 py-3 rounded-xl shadow-md transition-all text-sm">
+                            Schedule Your Eco-Diagnostic Inspection Today
+                        </button>
+                    </div>
+                </div>
+
+            </article>
+        </section>
+
+        <!-- ==================== 4. ABOUT PAGE ==================== -->
+        <section id="page-about" class="page-tab">
+            <!-- Header Banner -->
+            <div class="bg-gradient-to-r from-brand-900 to-brand-800 text-white py-16 px-4 text-center">
+                <span class="bg-emerald-500/20 text-emerald-300 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">Our Heritage & Mission</span>
+                <h1 class="text-3xl md:text-5xl font-extrabold mt-3">VerdantGuard Environmental Solutions</h1>
+                <p class="text-slate-200 mt-2 max-w-2xl mx-auto">Combining biological pest science with sustainable environmental stewardship.</p>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+                <!-- Story Grid -->
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-4">
+                        <span class="text-emerald-600 font-extrabold text-xs uppercase tracking-wider">Pioneering Eco Protection</span>
+                        <h2 class="text-3xl font-extrabold text-brand-900">Our Founding Story</h2>
+                        <p class="text-slate-600 leading-relaxed">
+                            Founded in 2012 by entomologists and environmental specialists, VerdantGuard was created to replace toxic chemical extermination with non-toxic botanical alternatives.
+                        </p>
+                        <p class="text-slate-600 leading-relaxed">
+                            We believe that effective pest control should never jeopardize household air quality, soil systems, or pets. Our teams utilize state-of-the-art biological monitoring tools and botanical extracts that eradicate unwanted pests without leaving persistent toxins behind.
+                        </p>
+                    </div>
+                    <!-- Image Card with Text Overlay -->
+                    <div class="relative rounded-3xl overflow-hidden shadow-xl border border-slate-200 h-80">
+                        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80" alt="Eco Mission" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-950 via-brand-950/30 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6 text-white">
+                            <span class="bg-emerald-500 text-brand-950 text-xs font-bold px-2.5 py-1 rounded uppercase">Safety First</span>
+                            <h3 class="text-lg font-bold mt-1">Dedicated Certified Technicians</h3>
+                            <p class="text-xs text-slate-200">100% NYS Department of Environmental Conservation certified.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stat Counters -->
+                <div class="bg-brand-900 text-white rounded-3xl p-8 grid sm:grid-cols-4 gap-8 text-center shadow-xl">
+                    <div>
+                        <div class="text-4xl font-black text-emerald-400">12,500+</div>
+                        <div class="text-xs text-slate-300 mt-1 uppercase tracking-wider">Homes Protected</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-black text-emerald-400">100%</div>
+                        <div class="text-xs text-slate-300 mt-1 uppercase tracking-wider">Botanical Formulations</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-black text-emerald-400">15+</div>
+                        <div class="text-xs text-slate-300 mt-1 uppercase tracking-wider">Years Experience</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-black text-emerald-400">4.9 ★</div>
+                        <div class="text-xs text-slate-300 mt-1 uppercase tracking-wider">Customer Rating</div>
+                    </div>
+                </div>
+
+                <!-- Core Values -->
+                <div>
+                    <div class="text-center max-w-2xl mx-auto mb-12">
+                        <h2 class="text-3xl font-extrabold text-brand-900">Our Core Principles</h2>
+                        <p class="text-slate-600 mt-2">Every service call is built upon three foundational pillars.</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm text-center space-y-3">
+                            <div class="w-14 h-14 bg-brand-50 rounded-2xl text-emerald-600 mx-auto flex items-center justify-center text-2xl font-bold"><i class="fa-solid fa-leaf"></i></div>
+                            <h3 class="font-bold text-xl text-slate-900">Environmental Integrity</h3>
+                            <p class="text-slate-600 text-sm">We strictly utilize non-synthetic, plant-derived botanical formulas safe for soil and aquatic runoffs.</p>
+                        </div>
+                        <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm text-center space-y-3">
+                            <div class="w-14 h-14 bg-brand-50 rounded-2xl text-emerald-600 mx-auto flex items-center justify-center text-2xl font-bold"><i class="fa-solid fa-handshake"></i></div>
+                            <h3 class="font-bold text-xl text-slate-900">Transparent Service</h3>
+                            <p class="text-slate-600 text-sm">No hidden service fees or contracts. Clear upfront quotes and complete diagnostic reports provided after every visit.</p>
+                        </div>
+                        <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm text-center space-y-3">
+                            <div class="w-14 h-14 bg-brand-50 rounded-2xl text-emerald-600 mx-auto flex items-center justify-center text-2xl font-bold"><i class="fa-solid fa-award"></i></div>
+                            <h3 class="font-bold text-xl text-slate-900">Uncompromising Excellence</h3>
+                            <p class="text-slate-600 text-sm">Continuous entomological training guarantees that our technicians apply cutting-edge eco-friendly methods.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 5. CONTACT PAGE ==================== -->
+        <section id="page-contact" class="page-tab">
+            <!-- Header Banner -->
+            <div class="bg-brand-900 text-white py-16 px-4 text-center">
+                <span class="bg-emerald-500/20 text-emerald-300 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">Get In Touch</span>
+                <h1 class="text-3xl md:text-5xl font-extrabold mt-3">Request Your Free Site Audit</h1>
+                <p class="text-slate-200 mt-2 max-w-2xl mx-auto">Submit your details below and our dispatch team will reach out within 30 minutes.</p>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div class="grid lg:grid-cols-12 gap-12">
+
+                    <!-- Customer Lead Form (Interactive Submission) -->
+                    <div class="lg:col-span-7 bg-white p-8 md:p-10 rounded-3xl border border-slate-200 shadow-xl">
+                        <h2 class="text-2xl font-extrabold text-brand-900 mb-2">Customer Inquiry Form</h2>
+                        <p class="text-slate-600 text-sm mb-6">Fill out your information to receive a customized non-toxic eco treatment proposal.</p>
+
+                        <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-5">
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Your Full Name *</label>
+                                <input type="text" id="cust-name" required placeholder="e.g. Eleanor Vance" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all text-sm">
+                            </div>
+
+                            <div class="grid sm:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Email Address *</label>
+                                    <input type="email" id="cust-email" required placeholder="eleanor@example.com" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all text-sm">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Phone Number *</label>
+                                    <input type="tel" id="cust-phone" required placeholder="(631) 555-0199" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all text-sm">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Primary Pest Concern</label>
+                                <select id="cust-service" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all text-sm text-slate-700">
+                                    <option value="Residential Eco Protection">Residential Eco Protection</option>
+                                    <option value="Commercial Pest Audit">Commercial Pest Audit</option>
+                                    <option value="Termite Inspection & Baiting">Termite Inspection & Baiting</option>
+                                    <option value="Rodent & Wildlife Exclusion">Rodent & Wildlife Exclusion</option>
+                                    <option value="Mosquito & Tick Control">Mosquito & Tick Control</option>
+                                    <option value="Emergency Treatment">Emergency Immediate Treatment</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Your Message / Specific Details *</label>
+                                <textarea id="cust-message" rows="4" required placeholder="Describe your pest concern or requested inspection date..." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all text-sm"></textarea>
+                            </div>
+
+                            <button type="submit" id="submit-btn" class="w-full bg-gradient-to-r from-brand-600 to-brand-800 hover:from-brand-700 hover:to-brand-900 text-white font-extrabold py-4 rounded-xl shadow-lg shadow-emerald-900/10 transition-all duration-300 text-base flex justify-center items-center gap-2">
+                                <span>Send Inspection Request</span>
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Contact Details & Map Card -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <!-- Card 1 -->
+                        <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-md space-y-6">
+                            <h3 class="text-xl font-bold text-brand-900 border-b border-slate-100 pb-3">Operational Headquarters</h3>
+
+                            <div class="space-y-4">
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-10 h-10 rounded-xl bg-brand-50 text-emerald-600 flex items-center justify-center shrink-0"><i class="fa-solid fa-location-dot"></i></div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-900 text-sm">Service Coverage Area</h4>
+                                        <p class="text-xs text-slate-600 mt-0.5">Serving Patchogue, Long Island, and surrounding Suffolk County municipalities.</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-10 h-10 rounded-xl bg-brand-50 text-emerald-600 flex items-center justify-center shrink-0"><i class="fa-solid fa-phone"></i></div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-900 text-sm">Direct Phone Line</h4>
+                                        <p class="text-xs text-slate-600 mt-0.5">(631) 555-0199 (Toll-Free 24/7 Hotline)</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-10 h-10 rounded-xl bg-brand-50 text-emerald-600 flex items-center justify-center shrink-0"><i class="fa-solid fa-envelope"></i></div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-900 text-sm">Dispatch Email</h4>
+                                        <p class="text-xs text-slate-600 mt-0.5">dispatch@verdantguardeco.com</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-10 h-10 rounded-xl bg-brand-50 text-emerald-600 flex items-center justify-center shrink-0"><i class="fa-solid fa-clock"></i></div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-900 text-sm">Business Hours</h4>
+                                        <p class="text-xs text-slate-600 mt-0.5">Mon–Fri: 7:00 AM – 8:00 PM<br>Sat–Sun: 8:00 AM – 5:00 PM (24/7 On-Call Emergency)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Image Card Overlay for Office/Dispatch -->
+                        <div class="relative rounded-3xl overflow-hidden shadow-md border border-slate-200 h-52">
+                            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80" alt="Dispatch Desk" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-brand-950 via-brand-950/40 to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 right-4 text-white">
+                                <span class="bg-emerald-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded uppercase">Rapid Mobile Units</span>
+                                <h4 class="font-bold text-sm mt-1">On-Demand Dispatch Technicians</h4>
+                                <p class="text-xs text-slate-200">Average local response time under 45 minutes.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- SUCCESS TRANSMISSION MODAL -->
+    <div id="success-modal" class="fixed inset-0 bg-brand-950/70 backdrop-blur-sm z-50 flex items-center justify-center hidden px-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-8 text-center space-y-4 shadow-2xl border border-emerald-100 transform scale-95 transition-all duration-300">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full mx-auto flex items-center justify-center text-3xl font-bold animate-bounce">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h3 class="text-2xl font-extrabold text-brand-900">Request Transmitted!</h3>
+            <p class="text-slate-600 text-sm leading-relaxed" id="modal-message-body">
+                Thank you. Your request has been dispatched to our local field supervisors.
+            </p>
+            <div class="bg-brand-50 p-4 rounded-2xl text-left text-xs text-slate-700 space-y-1">
+                <div><strong>Client:</strong> <span id="modal-client-name">--</span></div>
+                <div><strong>Contact Email:</strong> <span id="modal-client-email">--</span></div>
+                <div><strong>Selected Service:</strong> <span id="modal-client-service">--</span></div>
+            </div>
+            <button onclick="closeSuccessModal()" class="w-full bg-brand-700 hover:bg-brand-800 text-white font-bold py-3 rounded-xl transition-all text-sm">
+                Close & Return
+            </button>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-950 text-white pt-16 pb-8 border-t border-brand-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-white/10">
+            <!-- Brand Info -->
+            <div class="space-y-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
+                        <i class="fa-solid fa-shield-halved text-xl"></i>
+                    </div>
+                    <span class="text-xl font-extrabold text-white">Verdant<span class="text-emerald-400">Guard</span></span>
+                </div>
+                <p class="text-slate-400 text-xs leading-relaxed">
+                    Setting the standard for non-toxic botanical pest extermination and structural protection across coastal New York regions.
+                </p>
+                <div class="flex space-x-3 text-slate-400 text-sm">
+                    <a href="#" class="hover:text-emerald-400 transition-colors"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="hover:text-emerald-400 transition-colors"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" class="hover:text-emerald-400 transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="hover:text-emerald-400 transition-colors"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h4 class="text-sm font-bold uppercase tracking-wider text-emerald-400 mb-4">Quick Navigation</h4>
+                <ul class="space-y-2 text-xs text-slate-300">
+                    <li><button onclick="switchTab('home')" class="hover:text-emerald-400 transition-colors">Home Page</button></li>
+                    <li><button onclick="switchTab('services')" class="hover:text-emerald-400 transition-colors">Eco Pest Services</button></li>
+                    <li><button onclick="switchTab('blog')" class="hover:text-emerald-400 transition-colors">Eco Insights Guide</button></li>
+                    <li><button onclick="switchTab('about')" class="hover:text-emerald-400 transition-colors">About Our Team</button></li>
+                    <li><button onclick="switchTab('contact')" class="hover:text-emerald-400 transition-colors">Contact & Lead Form</button></li>
+                </ul>
+            </div>
+
+            <!-- Services -->
+            <div>
+                <h4 class="text-sm font-bold uppercase tracking-wider text-emerald-400 mb-4">Core Specialties</h4>
+                <ul class="space-y-2 text-xs text-slate-300">
+                    <li>Residential Pest Defense</li>
+                    <li>Termite Baiting Barriers</li>
+                    <li>Rodent Sealing & Exclusion</li>
+                    <li>Mosquito & Tick Botanical Fogging</li>
+                    <li>Commercial Hygiene Audits</li>
+                </ul>
+            </div>
+
+            <!-- Emergency Box -->
+            <div class="bg-brand-900/80 p-5 rounded-2xl border border-emerald-500/20 space-y-3">
+                <span class="text-xs bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded font-bold uppercase">24/7 Support</span>
+                <h4 class="text-sm font-bold text-white">Emergency On-Call Dispatch</h4>
+                <p class="text-xs text-slate-300">Direct connection to local technicians on call right now.</p>
+                <div class="text-lg font-black text-emerald-400">(631) 555-0199</div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-400">
+            <p>&copy; 2026 VerdantGuard Environmental Solutions. All Rights Reserved.</p>
+            <div class="flex space-x-6 mt-4 md:mt-0">
+                <a href="#" class="hover:text-slate-200">Privacy Policy</a>
+                <a href="#" class="hover:text-slate-200">Terms of Service</a>
+                <a href="#" class="hover:text-slate-200">Eco Certification</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Page Switcher Navigation Function
+        function switchTab(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page-tab');
+            pages.forEach(p => p.classList.remove('active'));
+
+            // Show selected page
+            const targetPage = document.getElementById('page-' + pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            // Update Nav Button States
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(btn => {
+                btn.classList.remove('text-brand-700', 'bg-brand-50');
+                btn.classList.add('text-slate-600');
+            });
+
+            const activeBtn = document.getElementById('nav-' + pageId);
+            if (activeBtn) {
+                activeBtn.classList.add('text-brand-700', 'bg-brand-50');
+                activeBtn.classList.remove('text-slate-600');
+            }
+
+            // Scroll to top smooth
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Blog FAQ Toggle
+        function toggleFaq(faqId) {
+            const content = document.getElementById(faqId);
+            const icon = document.getElementById(faqId + '-icon');
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                content.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Contact Form Submission Handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('cust-name').value;
+            const email = document.getElementById('cust-email').value;
+            const service = document.getElementById('cust-service').value;
+
+            // Populate Modal
+            document.getElementById('modal-client-name').textContent = name;
+            document.getElementById('modal-client-email').textContent = email;
+            document.getElementById('modal-client-service').textContent = service;
+
+            // Display Modal
+            const modal = document.getElementById('success-modal');
+            modal.classList.remove('hidden');
+
+            // Reset form
+            document.getElementById('contact-form').reset();
+        }
+
+        // Modal Close
+        function closeSuccessModal() {
+            const modal = document.getElementById('success-modal');
+            modal.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
